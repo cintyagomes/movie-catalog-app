@@ -37,6 +37,9 @@ android {
     kapt {
         generateStubs = true
     }
+    viewBinding {
+        enable = true
+    }
 }
 
 dependencies {
