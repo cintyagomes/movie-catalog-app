@@ -4,4 +4,6 @@
     <string name="movie_title">Movie Title</string>
     <string name="movie_year">Movie Year</string>
     <string name="type">Type</string>
+    <string name="search_for_a_movie">Search for a movie</string>
+    <string name="search_button">Search</string>
 </resources>

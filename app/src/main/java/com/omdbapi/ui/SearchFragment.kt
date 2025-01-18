@@ -24,8 +24,8 @@ class SearchFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.btnSearch.setOnClickListener {
-            val query = binding.etSearch.text.toString()
+        binding.searchBtn.setOnClickListener {
+            val query = binding.searchEditText.text.toString()
             if (query.isNotBlank()) {
                 val action = SearchFragmentDirections.actionSearchToResults(query)
                 findNavController().navigate(action)
