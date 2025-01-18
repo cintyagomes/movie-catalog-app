@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">omdbapi</string>
+    <string name="movie_poster">Movie Poster</string>
+    <string name="movie_title">Movie Title</string>
+    <string name="movie_year">Movie Year</string>
+    <string name="type">Type</string>
 </resources>
