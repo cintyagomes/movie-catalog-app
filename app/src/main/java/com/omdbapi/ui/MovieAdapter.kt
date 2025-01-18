@@ -26,6 +26,7 @@ internal class MovieAdapter : ListAdapter<Movie, MovieAdapter.MovieViewHolder>(M
         fun bind(movie: Movie) {
             binding.title.text = movie.title
             binding.year.text = movie.year
+            binding.type.text = movie.type
             Glide.with(binding.root)
                 .load(movie.poster)
                 .into(binding.poster)
