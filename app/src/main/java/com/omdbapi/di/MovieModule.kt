@@ -1,6 +1,6 @@
 package com.omdbapi.di
 
-import com.omdbapi.data.GetMoviesService
+import com.omdbapi.data.api.GetMoviesService
 import com.omdbapi.data.MovieRepository
 import dagger.Module
 import dagger.Provides
