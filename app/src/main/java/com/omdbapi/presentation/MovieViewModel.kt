@@ -20,8 +20,8 @@ internal class MovieViewModel(
     private val _error = MutableLiveData<String>()
     val error: LiveData<String> = _error
 
-    private val _movieDetails = MutableLiveData<MovieDetail>()
-    val movieDetails: LiveData<MovieDetail> = _movieDetails
+    private val _movieDetails = MutableLiveData<UIState<MovieDetail>>()
+    val movieDetails: LiveData<UIState<MovieDetail>> = _movieDetails
 
     fun getMovies(apiKey: String, searchQuery: String) {
         viewModelScope.launch {
@@ -39,15 +39,21 @@ internal class MovieViewModel(
 
     fun getMovieDetails(apiKey: String, movieId: String) {
         viewModelScope.launch {
+            _movieDetails.postValue(UIState.Loading)
             val result = repository.getMovieDetails(apiKey, movieId)
-
             result.onSuccess { movieDetail ->
-                _movieDetails.postValue(movieDetail)
+                _movieDetails.postValue(UIState.Loaded(movieDetail))
             }
             result.onFailure { exception ->
                 Log.e("MovieViewModel", "Error fetching movie details: ${exception.message}")
                 _error.postValue(exception.message)
             }
         }
+    }
+
+    sealed class UIState<out T> {
+        data object Loading : UIState<Nothing>()
+        data class Error(val message: String) : UIState<Nothing>()
+        data class Loaded<out T>(val data: T) : UIState<T>()
     }
 }

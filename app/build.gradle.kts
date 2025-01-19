@@ -55,6 +55,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.dagger)
     implementation(libs.androidx.navigation.fragment)
+    implementation(libs.androidx.ui.tooling.data.android)
     kapt(libs.dagger.compiler)
     implementation(libs.glide)
     implementation(libs.androidx.fragment)

@@ -12,6 +12,7 @@ import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
 import com.omdbapi.MainActivity
 import com.omdbapi.R
+import com.omdbapi.data.model.MovieDetail
 import com.omdbapi.databinding.FragmentMovieDetailBinding
 import com.omdbapi.di.DaggerAppComponent
 import com.omdbapi.presentation.MovieViewModel
@@ -35,7 +36,35 @@ class MovieDetailFragment : Fragment(R.layout.fragment_movie_detail) {
             MovieViewModelFactory(repository)
         )[MovieViewModel::class.java]
 
-        binding.toolbar.apply {
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val movieId = arguments?.let { MovieDetailFragmentArgs.fromBundle(it).movieId }
+
+        viewModel.movieDetails.observe(viewLifecycleOwner) { state ->
+            when(state) {
+                is MovieViewModel.UIState.Loading -> showLoading()
+                is MovieViewModel.UIState.Loaded -> showMovieDetails(state.data)
+                is MovieViewModel.UIState.Error -> showError(state.message)
+            }
+        }
+
+        movieId?.let { viewModel.getMovieDetails("431d51d7", it) }
+    }
+
+    private fun showLoading() {
+        binding.progressBar.visibility = View.VISIBLE
+        binding.itemMovieDetail.root.visibility = View.GONE
+    }
+
+    private fun showMovieDetails(movieDetail: MovieDetail) {
+        binding.progressBar.visibility = View.GONE
+        binding.itemMovieDetail.root.visibility = View.VISIBLE
+
+        binding.itemMovieDetail.toolbar.apply {
             (activity as? AppCompatActivity)?.setSupportActionBar(this)
             (activity as? AppCompatActivity)?.supportActionBar?.setDisplayShowTitleEnabled(false)
             setNavigationIcon(R.drawable.ic_arrow_back)
@@ -46,36 +75,27 @@ class MovieDetailFragment : Fragment(R.layout.fragment_movie_detail) {
             }
         }
 
-        return binding.root
+        binding.itemMovieDetail.title.text = movieDetail.title
+        binding.itemMovieDetail.releaseDate.text = movieDetail.released
+        binding.itemMovieDetail.runtime.text = movieDetail.runtime
+        binding.itemMovieDetail.genre.text = movieDetail.genre
+        binding.itemMovieDetail.director.text = movieDetail.director
+        binding.itemMovieDetail.writer.text = movieDetail.writer
+        binding.itemMovieDetail.actors.text = movieDetail.actors
+        binding.itemMovieDetail.plot.text = movieDetail.plot
+        binding.itemMovieDetail.language.text = movieDetail.language
+        binding.itemMovieDetail.awards.text = movieDetail.awards
+        binding.itemMovieDetail.imdbRating.text = movieDetail.imdbRating
+        binding.itemMovieDetail.type.text = movieDetail.type
+
+        Glide.with(binding.root)
+            .load(movieDetail.poster)
+            .into(binding.itemMovieDetail.poster)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        val movieId = arguments?.let { MovieDetailFragmentArgs.fromBundle(it).movieId }
-
-        viewModel.movieDetails.observe(viewLifecycleOwner) { movie ->
-            binding.title.text = movie.title
-            binding.releaseDate.text = movie.released
-            binding.runtime.text = movie.runtime
-            binding.genre.text = movie.genre
-            binding.director.text = movie.director
-            binding.writer.text = movie.writer
-            binding.actors.text = movie.actors
-            binding.plot.text = movie.plot
-            binding.language.text = movie.language
-            binding.awards.text = movie.awards
-            binding.imdbRating.text = movie.imdbRating
-            binding.type.text = movie.type
-            Glide.with(binding.root)
-                .load(movie.poster)
-                .into(binding.poster)
-        }
-
-        movieId?.let { viewModel.getMovieDetails("431d51d7", it) }
-
-        viewModel.error.observe(viewLifecycleOwner) { errorMessage ->
-            Toast.makeText(context, errorMessage, Toast.LENGTH_LONG).show()
-        }
+    private fun showError(message: String) {
+        binding.progressBar.visibility = View.GONE
+        binding.itemMovieDetail.root.visibility = View.GONE
+        Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()
     }
 }
