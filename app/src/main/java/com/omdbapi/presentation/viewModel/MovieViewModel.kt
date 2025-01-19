@@ -1,6 +1,5 @@
 package com.omdbapi.presentation.viewModel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -32,11 +31,9 @@ internal class MovieViewModel(
         viewModelScope.launch {
             val result = repository.getMovies(apiKey, searchQuery)
             result.onSuccess {
-                Log.d("MovieViewModel", "Movies fetched: ${it.search}")
                 _movies.postValue(it.search ?: emptyList()) // Updates the list of movies
             }
             result.onFailure {
-                Log.e("MovieViewModel", "Error fetching movies: ${it.message}")
                 _error.postValue(it.message) // Updates error message in case of failure
             }
         }
@@ -51,7 +48,6 @@ internal class MovieViewModel(
                 _movieDetails.postValue(UIState.Loaded(movieDetail)) // Updates the movie details on success
             }
             result.onFailure { exception ->
-                Log.e("MovieViewModel", "Error fetching movie details: ${exception.message}")
                 _error.postValue(exception.message) // Updates error message in case of failure
             }
         }
