@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.bumptech.glide.Glide
 import com.omdbapi.R
 import com.omdbapi.databinding.FragmentMovieDetailBinding
 import com.omdbapi.di.DaggerAppComponent
@@ -41,7 +42,20 @@ class MovieDetailFragment : Fragment(R.layout.fragment_movie_detail) {
 
         viewModel.movieDetails.observe(viewLifecycleOwner) { movie ->
             binding.title.text = movie.title
+            binding.releaseDate.text = movie.released
+            binding.runtime.text = movie.runtime
+            binding.genre.text = movie.genre
+            binding.director.text = movie.director
+            binding.writer.text = movie.writer
+            binding.actors.text = movie.actors
             binding.plot.text = movie.plot
+            binding.language.text = movie.language
+            binding.awards.text = movie.awards
+            binding.imdbRating.text = movie.imdbRating
+            binding.type.text = movie.type
+            Glide.with(binding.root)
+                .load(movie.poster)
+                .into(binding.poster)
         }
 
         movieId?.let { viewModel.getMovieDetails("431d51d7", it) }

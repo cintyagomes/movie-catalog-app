@@ -5,10 +5,6 @@ import com.google.gson.annotations.SerializedName
 data class MovieDetail(
     @SerializedName("Title")
     val title: String,
-    @SerializedName("Year")
-    val year: String,
-    @SerializedName("Rated")
-    val rated: String,
     @SerializedName("Released")
     val released: String,
     @SerializedName("Runtime")
@@ -25,8 +21,6 @@ data class MovieDetail(
     val plot: String,
     @SerializedName("Language")
     val language: String,
-    @SerializedName("Country")
-    val country: String,
     @SerializedName("Awards")
     val awards: String,
     @SerializedName("imdbRating")
