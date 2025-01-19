@@ -11,6 +11,8 @@ import com.omdbapi.databinding.ItemMovieBinding
 
 internal class MovieAdapter : ListAdapter<Movie, MovieAdapter.MovieViewHolder>(MovieDiffCallback()) {
 
+    private var onItemClickListener: ((String) -> Unit)? = null
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         val binding = ItemMovieBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return MovieViewHolder(binding)
@@ -18,18 +20,26 @@ internal class MovieAdapter : ListAdapter<Movie, MovieAdapter.MovieViewHolder>(M
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
         val movie = getItem(position)
-        holder.bind(movie)
+        holder.bind(movie, onItemClickListener)
+    }
+
+    fun setOnItemClickListener(listener: (String) -> Unit) {
+        onItemClickListener = listener
     }
 
     class MovieViewHolder(private val binding: ItemMovieBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(movie: Movie) {
+        fun bind(movie: Movie, onItemClickListener: ((String) -> Unit)?) {
             binding.title.text = movie.title
             binding.year.text = movie.year
             binding.type.text = movie.type
             Glide.with(binding.root)
                 .load(movie.poster)
                 .into(binding.poster)
+
+            binding.root.setOnClickListener {
+                onItemClickListener?.invoke(movie.imdbId)
+            }
         }
     }
 

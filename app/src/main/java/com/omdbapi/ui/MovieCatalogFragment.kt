@@ -4,10 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.omdbapi.MainActivity
 import com.omdbapi.R
@@ -58,9 +60,19 @@ class MovieCatalogFragment : Fragment() {
             adapter.submitList(movies)
         }
 
+        adapter.setOnItemClickListener { movieId ->
+            val action = MovieCatalogFragmentDirections
+                .actionMovieCatalogFragmentToMovieDetailFragment(movieId)
+            findNavController().navigate(action)
+        }
+
         val query = arguments?.let { MovieCatalogFragmentArgs.fromBundle(it).query }
         query?.let {
             viewModel.getMovies("431d51d7", it)
+        }
+
+        viewModel.error.observe(viewLifecycleOwner) { errorMessage ->
+            Toast.makeText(context, errorMessage, Toast.LENGTH_LONG).show()
         }
     }
 }

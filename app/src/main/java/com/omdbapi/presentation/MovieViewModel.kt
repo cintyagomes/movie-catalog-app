@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.omdbapi.data.MovieRepository
 import com.omdbapi.data.model.Movie
+import com.omdbapi.data.model.MovieDetail
 import kotlinx.coroutines.launch
 
 internal class MovieViewModel(
@@ -19,6 +20,9 @@ internal class MovieViewModel(
     private val _error = MutableLiveData<String>()
     val error: LiveData<String> = _error
 
+    private val _movieDetails = MutableLiveData<MovieDetail>()
+    val movieDetails: LiveData<MovieDetail> = _movieDetails
+
     fun getMovies(apiKey: String, searchQuery: String) {
         viewModelScope.launch {
             val result = repository.getMovies(apiKey, searchQuery)
@@ -29,6 +33,20 @@ internal class MovieViewModel(
             result.onFailure {
                 Log.e("MovieViewModel", "Error fetching movies: ${it.message}")
                 _error.postValue(it.message)
+            }
+        }
+    }
+
+    fun getMovieDetails(apiKey: String, movieId: String) {
+        viewModelScope.launch {
+            val result = repository.getMovieDetails(apiKey, movieId)
+
+            result.onSuccess { movieDetail ->
+                _movieDetails.postValue(movieDetail)
+            }
+            result.onFailure { exception ->
+                Log.e("MovieViewModel", "Error fetching movie details: ${exception.message}")
+                _error.postValue(exception.message)
             }
         }
     }
