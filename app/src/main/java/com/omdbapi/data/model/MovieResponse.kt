@@ -2,6 +2,7 @@ package com.omdbapi.data.model
 
 import com.google.gson.annotations.SerializedName
 
+// Data class representing the response from the movie API
 data class MovieResponse(
     @SerializedName("Search")
     val search: List<Movie>?,
@@ -11,6 +12,7 @@ data class MovieResponse(
     val response: String
 )
 
+// Data class representing an individual movie
 data class Movie(
     @SerializedName("Title")
     val title: String,

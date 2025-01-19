@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/searchFragment"
-        android:name="com.omdbapi.ui.SearchFragment"
+        android:name="com.omdbapi.presentation.ui.SearchFragment"
         android:label="Search Movies">
         <action
             android:id="@+id/action_search_to_results"
@@ -15,11 +15,22 @@
 
     <fragment
         android:id="@+id/movieCatalogFragment"
-        android:name="com.omdbapi.ui.MovieCatalogFragment"
+        android:name="com.omdbapi.presentation.ui.MovieCatalogFragment"
         android:label="Search Results">
         <argument
             android:name="query"
             app:argType="string" />
+        <action
+            android:id="@+id/action_movieCatalogFragment_to_movieDetailFragment"
+            app:destination="@id/movieDetailFragment" />
     </fragment>
 
+    <fragment
+        android:id="@+id/movieDetailFragment"
+        android:name="com.omdbapi.presentation.ui.MovieDetailFragment"
+        android:label="Movie Details">
+        <argument
+            android:name="movieId"
+            app:argType="string" />
+    </fragment>
 </navigation>

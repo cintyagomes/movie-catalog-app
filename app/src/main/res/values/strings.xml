@@ -6,7 +6,17 @@
     <string name="type">Type</string>
     <string name="search_for_a_movie">Search for a movie</string>
     <string name="search_button">Search</string>
-    <string name="search_title">Welcome to Movie Catalogue!</string>
+    <string name="search_title">Welcome to the Movie Catalogue!</string>
     <string name="movie_image">Movie Image</string>
     <string name="go_back_button">Go Back</string>
+    <string name="movie_plot">Movie Plot</string>
+    <string name="movie_release_date">Movie Release Date</string>
+    <string name="movie_language">Movie Language</string>
+    <string name="movie_genre">Movie Genre</string>
+    <string name="movie_actors">Movie Actors</string>
+    <string name="movie_director">Movie Director</string>
+    <string name="movie_awards">Movie Awards</string>
+    <string name="movie_runtime">Movie Runtime</string>
+    <string name="movie_writer">Movie Writer</string>
+    <string name="movie_rating">Movie Rating</string>
 </resources>
