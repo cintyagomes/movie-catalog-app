@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/my_nav_graph"
+    app:startDestination="@id/searchFragment">
+
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.omdbapi.ui.SearchFragment"
+        android:label="Search Movies">
+        <action
+            android:id="@+id/action_search_to_results"
+            app:destination="@id/movieCatalogFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/movieCatalogFragment"
+        android:name="com.omdbapi.ui.MovieCatalogFragment"
+        android:label="Search Results">
+        <argument
+            android:name="query"
+            app:argType="string" />
+    </fragment>
+
+</navigation>
