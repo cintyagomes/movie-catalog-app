@@ -20,6 +20,17 @@
         <argument
             android:name="query"
             app:argType="string" />
+        <action
+            android:id="@+id/action_movieCatalogFragment_to_movieDetailFragment"
+            app:destination="@id/movieDetailFragment" />
     </fragment>
 
+    <fragment
+        android:id="@+id/movieDetailFragment"
+        android:name="com.omdbapi.ui.MovieDetailFragment"
+        android:label="Movie Details">
+        <argument
+            android:name="movieId"
+            app:argType="string" />
+    </fragment>
 </navigation>

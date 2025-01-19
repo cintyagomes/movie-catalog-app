@@ -9,4 +9,5 @@
     <string name="search_title">Welcome to Movie Catalogue!</string>
     <string name="movie_image">Movie Image</string>
     <string name="go_back_button">Go Back</string>
+    <string name="movie_plot">Movie Plot</string>
 </resources>
