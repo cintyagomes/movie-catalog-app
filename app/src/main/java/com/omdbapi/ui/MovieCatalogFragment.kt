@@ -4,9 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.omdbapi.MainActivity
+import com.omdbapi.R
 import com.omdbapi.databinding.FragmentMovieCatalogBinding
 import com.omdbapi.di.DaggerAppComponent
 import com.omdbapi.presentation.MovieViewModel
@@ -35,6 +39,17 @@ class MovieCatalogFragment : Fragment() {
             this,
             MovieViewModelFactory(repository)
         )[MovieViewModel::class.java]
+
+        binding.toolbar.apply {
+            (activity as? AppCompatActivity)?.setSupportActionBar(this)
+            (activity as? AppCompatActivity)?.supportActionBar?.setDisplayShowTitleEnabled(false)
+            setNavigationIcon(R.drawable.ic_arrow_back)
+
+            setNavigationOnClickListener {
+                val navController = (activity as? MainActivity)?.findNavController(R.id.nav_host_fragment)
+                navController?.navigateUp()
+            }
+        }
 
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.adapter = adapter
