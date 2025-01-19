@@ -2,6 +2,7 @@ package com.omdbapi.data.model
 
 import com.google.gson.annotations.SerializedName
 
+// Data class representing detailed information about a movie
 data class MovieDetail(
     @SerializedName("Title")
     val title: String,
