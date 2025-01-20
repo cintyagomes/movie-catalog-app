@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Text Sizes -->
+    <dimen name="text_size_small">12sp</dimen>
+    <dimen name="text_size_medium">16sp</dimen>
+    <dimen name="text_size_large">18sp</dimen>
+    <dimen name="text_size_extra_large">20sp</dimen>
+
+    <!-- Margins -->
+    <dimen name="margin_small">8dp</dimen>
+    <dimen name="margin_medium">16dp</dimen>
+    <dimen name="margin_large">24dp</dimen>
+    <dimen name="margin_extra_large">48dp</dimen>
+
+    <!-- Paddings -->
+    <dimen name="padding_small">8dp</dimen>
+    <dimen name="padding_medium">16dp</dimen>
+    <dimen name="padding_large">24dp</dimen>
+
+    <!-- Weight -->
+    <dimen name="weight_small">1</dimen>
+
+    <!-- Elevation -->
+    <dimen name="elevation_small">4dp</dimen>
+
+    <!-- Corner Radius -->
+    <dimen name="corner_radius_small">8dp</dimen>
+
+    <!-- Image Sizes -->
+    <dimen name="search_image_width">300dp</dimen>
+    <dimen name="search_image_height">200dp</dimen>
+    <dimen name="poster_width">140dp</dimen>
+    <dimen name="poster_height">200dp</dimen>
+    <dimen name="movie_detail_poster_width">180dp</dimen>
+    <dimen name="movie_detail_poster_height">256dp</dimen>
+
+    <!-- Components Sizes -->
+    <dimen name="edit_text_height">48dp</dimen>
+</resources>

@@ -61,7 +61,7 @@ class MovieDetailFragment : Fragment(R.layout.fragment_movie_detail) {
         }
 
         // Fetches movie details if a valid apiKey is provided
-        movieId?.let { viewModel.getMovieDetails("431d51d7", it) }
+        movieId?.let { viewModel.fetchMovieDetails("431d51d7", it) }
     }
 
     // Displays the loading state with a progress bar
@@ -76,17 +76,7 @@ class MovieDetailFragment : Fragment(R.layout.fragment_movie_detail) {
         binding.itemMovieDetail.root.visibility = View.VISIBLE
 
         // Sets up the toolbar for navigation
-        binding.itemMovieDetail.toolbar.apply {
-            (activity as? AppCompatActivity)?.setSupportActionBar(this)
-            (activity as? AppCompatActivity)?.supportActionBar?.setDisplayShowTitleEnabled(false)
-            setNavigationIcon(R.drawable.ic_arrow_back)
-
-            // Handles the back navigation when the icon is clicked
-            setNavigationOnClickListener {
-                val navController = (activity as? MainActivity)?.findNavController(R.id.nav_host_fragment)
-                navController?.navigateUp()
-            }
-        }
+        setUpToolbar()
 
         binding.itemMovieDetail.title.text = movieDetail.title
         binding.itemMovieDetail.releaseDate.text = movieDetail.released
@@ -104,6 +94,20 @@ class MovieDetailFragment : Fragment(R.layout.fragment_movie_detail) {
         Glide.with(binding.root)
             .load(movieDetail.poster)
             .into(binding.itemMovieDetail.poster)
+    }
+
+    private fun setUpToolbar() {
+        binding.itemMovieDetail.toolbar.apply {
+            (activity as? AppCompatActivity)?.setSupportActionBar(this) // Sets the action bar
+            (activity as? AppCompatActivity)?.supportActionBar?.setDisplayShowTitleEnabled(false) // Hides the title
+            setNavigationIcon(R.drawable.ic_arrow_back) // Sets the back navigation icon
+
+            // Handles the back navigation when the icon is clicked
+            setNavigationOnClickListener {
+                val navController = (activity as? MainActivity)?.findNavController(R.id.nav_host_fragment)
+                navController?.navigateUp()
+            }
+        }
     }
 
     // Displays an error message and hides the movie details UI
