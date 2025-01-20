@@ -70,9 +70,7 @@ class MovieCatalogFragment : Fragment() {
 
         // Sets the item click listener for navigating to movie detail page
         adapter.setOnItemClickListener { movieId ->
-            val action = MovieCatalogFragmentDirections
-                .actionMovieCatalogFragmentToMovieDetailFragment(movieId) // Creates navigation action
-            findNavController().navigate(action) // Navigates to the movie detail fragment
+            navigateToMovieDetail(movieId)
         }
 
         // Retrieves the query parameter from the arguments and fetches the movies
@@ -94,5 +92,11 @@ class MovieCatalogFragment : Fragment() {
                 navController?.navigateUp() // Navigates back
             }
         }
+    }
+
+    private fun navigateToMovieDetail(movieId: String) {
+        val action = MovieCatalogFragmentDirections
+            .actionMovieCatalogFragmentToMovieDetailFragment(movieId) // Creates navigation action
+        findNavController().navigate(action) // Navigates to the movie detail fragment
     }
 }
