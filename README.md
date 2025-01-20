@@ -27,14 +27,15 @@ O projeto segue o padrão **MVVM (Model-View-ViewModel)** para manter a separaç
 
 - **Kotlin:** Linguagem de desenvolvimento.
 - **Retrofit:** Para comunicação com APIs RESTful.
-- **Gson:** Para serialização/deserialização de JSON.
 - **Dagger:** Para injeção de dependências.
 - **Coroutines:** Para chamadas assíncronas e manipulação de fluxo de dados.
+- **XML:** Para criação de layouts.
 - **Jetpack Components:**
   - ViewModel
   - LiveData
   - RecyclerView
 - **Glide:** Para carregamento de imagens.
+- **Navigation:** Para navegação entre as telas.
 - **Material Design:** Para uma interface moderna e consistente.
 - **Mockk:** Para criação de objetos simulados em testes de unidade.
 - **JUnit:** Framework para testes de unidade e execução de casos de teste.
