@@ -55,9 +55,17 @@ class MovieCatalogFragment : Fragment() {
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.adapter = adapter
 
-        // Observes changes to the movies list and updates the adapter
-        viewModel.movies.observe(viewLifecycleOwner) { movies ->
-            adapter.submitList(movies) // Updates the RecyclerView with the new list of movies
+        // Observes the movie state and updates the UI accordingly
+        viewModel.movies.observe(viewLifecycleOwner) { state ->
+            when (state) {
+                is MovieViewModel.UIState.Loading -> Unit // To be implemented
+                is MovieViewModel.UIState.Error -> {
+                    Toast.makeText(context, state.message, Toast.LENGTH_LONG).show() // Shows error message
+                }
+                is MovieViewModel.UIState.Loaded -> {
+                    adapter.submitList(state.data) // Shows the movie list
+                }
+            }
         }
 
         // Sets the item click listener for navigating to movie detail page
@@ -70,12 +78,7 @@ class MovieCatalogFragment : Fragment() {
         // Retrieves the query parameter from the arguments and fetches the movies
         val query = arguments?.let { MovieCatalogFragmentArgs.fromBundle(it).query }
         query?.let {
-            viewModel.getMovies("431d51d7", it) // Fetches movies based on the query
-        }
-
-        // Observes error messages and displays them as Toast notifications
-        viewModel.error.observe(viewLifecycleOwner) { errorMessage ->
-            Toast.makeText(context, errorMessage, Toast.LENGTH_LONG).show() // Shows error message as a Toast
+            viewModel.fetchMovies("431d51d7", it) // Fetches movies based on the query
         }
     }
 

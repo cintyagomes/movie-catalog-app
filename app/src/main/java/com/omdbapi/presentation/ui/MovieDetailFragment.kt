@@ -61,7 +61,7 @@ class MovieDetailFragment : Fragment(R.layout.fragment_movie_detail) {
         }
 
         // Fetches movie details if a valid apiKey is provided
-        movieId?.let { viewModel.getMovieDetails("431d51d7", it) }
+        movieId?.let { viewModel.fetchMovieDetails("431d51d7", it) }
     }
 
     // Displays the loading state with a progress bar

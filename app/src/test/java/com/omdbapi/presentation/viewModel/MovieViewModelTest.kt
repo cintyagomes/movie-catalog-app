@@ -22,11 +22,13 @@ class MovieViewModelTest {
 
     private val repository: MovieRepository = mockk(relaxed = true) // Mocking the MovieRepository
     private var viewModel: MovieViewModel = mockk(relaxed = true) // Mocking the MovieViewModel
-    private val movieObserver: Observer<List<Movie>> = mockk(relaxed = true) // Observer for movie list
-    private val errorObserver: Observer<String> = mockk(relaxed = true) // Observer for error messages
-    private val movieDetailsObserver: Observer<MovieViewModel.UIState<MovieDetail>> = mockk(relaxed = true) // Observer for movie details state
+    private val movieObserver: Observer<MovieViewModel.UIState<List<Movie>>> =
+        mockk(relaxed = true) // Observer for movie list
+    private val movieDetailsObserver: Observer<MovieViewModel.UIState<MovieDetail>> =
+        mockk(relaxed = true) // Observer for movie details state
 
-    private val testDispatcher = StandardTestDispatcher() // Test dispatcher for coroutines, to control the execution
+    private val testDispatcher =
+        StandardTestDispatcher() // Test dispatcher for coroutines, to control the execution
 
     private val apiKey = "431d51d7"
     private val id = "tt1234567"
@@ -40,7 +42,6 @@ class MovieViewModelTest {
 
         // Adds observers to the ViewModel's LiveData so we can check if they are updated
         viewModel.movies.observeForever(movieObserver)
-        viewModel.error.observeForever(errorObserver)
         viewModel.movieDetails.observeForever(movieDetailsObserver)
     }
 
@@ -64,13 +65,13 @@ class MovieViewModelTest {
         coEvery { repository.getMovies(apiKey, "query") } returns response
 
         // WHEN
-        viewModel.getMovies(apiKey, "query") // Calls the method to get movies from the ViewModel
+        viewModel.fetchMovies(apiKey, "query") // Calls the method to get movies from the ViewModel
 
         // THEN
         advanceUntilIdle() // Advances coroutines until all tasks complete
 
         // Verifies that the observer was notified with the correct movie list
-        coVerify { movieObserver.onChanged(movieList) }
+        coVerify { movieObserver.onChanged(MovieViewModel.UIState.Loaded(movieList)) }
     }
 
     @DisplayName(
@@ -90,13 +91,15 @@ class MovieViewModelTest {
         coEvery { repository.getMovies(apiKey, "query") } returns response
 
         // WHEN
-        viewModel.getMovies(apiKey, "query") // Calls the method to get movies from the ViewModel
+        viewModel.fetchMovies(
+            apiKey, "query"
+        ) // Calls the method to get movies from the ViewModel
 
         // THEN
         advanceUntilIdle() // Advances coroutines until all tasks complete
 
         // Verifies that the error observer was notified with the correct error message
-        coVerify { errorObserver.onChanged("Error fetching movies") }
+        coVerify { movieObserver.onChanged(MovieViewModel.UIState.Error("Error fetching movies")) }
     }
 
     @DisplayName(
@@ -110,8 +113,9 @@ class MovieViewModelTest {
     fun `test getMovieDetails success`() = runTest {
         // GIVEN
         val movieDetail = MovieDetail(
-            "Movie 1", "2022", "120 min", "Action", "Director", "Writer", "Actors", "Plot",
-            "English", "Awards", "8.5", "tt1234567", "movie", "poster_url"
+            "Movie 1", "2022", "120 min", "Action", "Director",
+            "Writer", "Actors", "Plot", "English", "Awards",
+            "8.5", "tt1234567", "movie", "poster_url"
         )
         val response = Result.success(movieDetail)
 
@@ -119,7 +123,9 @@ class MovieViewModelTest {
         coEvery { repository.getMovieDetails(apiKey, id) } returns response
 
         // WHEN
-        viewModel.getMovieDetails(apiKey, id) // Calls the method to get movie details from the ViewModel
+        viewModel.fetchMovieDetails(
+            apiKey, id
+        ) // Calls the method to get movie details from the ViewModel
 
         // THEN
         advanceUntilIdle() // Advances coroutines until all tasks complete
@@ -145,20 +151,23 @@ class MovieViewModelTest {
         coEvery { repository.getMovieDetails(apiKey, id) } returns response
 
         // WHEN
-        viewModel.getMovieDetails(apiKey, id) // Calls the method to get movie details from the ViewModel
+        viewModel.fetchMovieDetails(
+            apiKey, id
+        ) // Calls the method to get movie details from the ViewModel
 
         // THEN
         advanceUntilIdle() // Advances coroutines until all tasks complete
 
         // Verifies that the error observer was notified with the correct error message
-        coVerify { errorObserver.onChanged("Error fetching movie details") }
+        coVerify {
+            movieDetailsObserver.onChanged(MovieViewModel.UIState.Error("Error fetching movie details"))
+        }
     }
 
     @After
     fun tearDown() {
         // Removes observers from LiveData after the test
         viewModel.movies.removeObserver(movieObserver)
-        viewModel.error.removeObserver(errorObserver)
         viewModel.movieDetails.removeObserver(movieDetailsObserver)
 
         // Resets the main dispatcher to its original state
