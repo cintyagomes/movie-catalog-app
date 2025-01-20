@@ -49,17 +49,7 @@ class MovieCatalogFragment : Fragment() {
         )[MovieViewModel::class.java]
 
         // Sets up the toolbar
-        binding.toolbar.apply {
-            (activity as? AppCompatActivity)?.setSupportActionBar(this) // Sets the action bar
-            (activity as? AppCompatActivity)?.supportActionBar?.setDisplayShowTitleEnabled(false) // Hides the title
-            setNavigationIcon(R.drawable.ic_arrow_back) // Sets the back navigation icon
-
-            // Handles the back navigation when the icon is clicked
-            setNavigationOnClickListener {
-                val navController = (activity as? MainActivity)?.findNavController(R.id.nav_host_fragment)
-                navController?.navigateUp() // Navigates back
-            }
-        }
+        setUpToolbar()
 
         // Sets up the RecyclerView with a LinearLayoutManager and the movie adapter
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
@@ -86,6 +76,20 @@ class MovieCatalogFragment : Fragment() {
         // Observes error messages and displays them as Toast notifications
         viewModel.error.observe(viewLifecycleOwner) { errorMessage ->
             Toast.makeText(context, errorMessage, Toast.LENGTH_LONG).show() // Shows error message as a Toast
+        }
+    }
+
+    private fun setUpToolbar() {
+        binding.toolbar.apply {
+            (activity as? AppCompatActivity)?.setSupportActionBar(this) // Sets the action bar
+            (activity as? AppCompatActivity)?.supportActionBar?.setDisplayShowTitleEnabled(false) // Hides the title
+            setNavigationIcon(R.drawable.ic_arrow_back) // Sets the back navigation icon
+
+            // Handles the back navigation when the icon is clicked
+            setNavigationOnClickListener {
+                val navController = (activity as? MainActivity)?.findNavController(R.id.nav_host_fragment)
+                navController?.navigateUp() // Navigates back
+            }
         }
     }
 }
