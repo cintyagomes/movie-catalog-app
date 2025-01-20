@@ -1,6 +1,8 @@
 # **Movie Catalog App**
 
-Este é um aplicativo Android que consome a [OMDB API](https://www.omdbapi.com/) para permitir a busca de filmes. O projeto utiliza tecnologias modernas como Kotlin, Retrofit, Dagger e Arquitetura MVVM, com foco em clean architecture, boas práticas e uma interface de usuário intuitiva.
+Este é um aplicativo Android que consome a [OMDB API](https://www.omdbapi.com/) para permitir a
+busca de filmes. O projeto utiliza tecnologias modernas como Kotlin, Retrofit, Dagger e Arquitetura
+MVVM, com foco em clean architecture, boas práticas e uma interface de usuário intuitiva.
 
 ---
 
@@ -8,14 +10,18 @@ Este é um aplicativo Android que consome a [OMDB API](https://www.omdbapi.com/)
 
 - Busca de filmes por título usando a OMDB API.
 - Exibição dos resultados retornados pela api, como: nome do filme, ano de lançamento e pôster.
-- Exibição de informações detalhadas dos filmes, ao clicar em uma opção na listagem, como: descrição, premiações e diretores.
+- Exibição de informações detalhadas dos filmes, ao clicar em uma opção na listagem, como:
+  descrição, premiações e diretores.
 
 ---
 
 ## 🏗️ **Arquitetura**
 
-O projeto segue o padrão **MVVM (Model-View-ViewModel)** para manter a separação de responsabilidades e facilitar a testabilidade.  
+O projeto segue o padrão **MVVM (Model-View-ViewModel)** para manter a separação de
+responsabilidades e facilitar a testabilidade.
+
 ### Componentes principais:
+
 - **ViewModel:** Responsável por gerenciar os dados da interface e a lógica de negócios.
 - **Repository:** Interage com a API e gerencia os dados.
 - **Retrofit:** Realiza as chamadas de rede.
@@ -27,14 +33,15 @@ O projeto segue o padrão **MVVM (Model-View-ViewModel)** para manter a separaç
 
 - **Kotlin:** Linguagem de desenvolvimento.
 - **Retrofit:** Para comunicação com APIs RESTful.
-- **Gson:** Para serialização/deserialização de JSON.
 - **Dagger:** Para injeção de dependências.
 - **Coroutines:** Para chamadas assíncronas e manipulação de fluxo de dados.
+- **XML:** Para criação de layouts.
 - **Jetpack Components:**
-  - ViewModel
-  - LiveData
-  - RecyclerView
+    - ViewModel
+    - LiveData
+    - RecyclerView
 - **Glide:** Para carregamento de imagens.
+- **Navigation:** Para navegação entre as telas.
 - **Material Design:** Para uma interface moderna e consistente.
 - **Mockk:** Para criação de objetos simulados em testes de unidade.
 - **JUnit:** Framework para testes de unidade e execução de casos de teste.
@@ -44,6 +51,7 @@ O projeto segue o padrão **MVVM (Model-View-ViewModel)** para manter a separaç
 ## 🚀 **Instalação e Configuração**
 
 ### Pré-requisitos:
+
 - Android Studio.
 - Gradle configurado corretamente.
 - Uma chave de API da [OMDB API](https://www.omdbapi.com/apikey.aspx).
@@ -51,6 +59,7 @@ O projeto segue o padrão **MVVM (Model-View-ViewModel)** para manter a separaç
 ### Passo a passo:
 
 1. Clone o repositório:
+
 ```bash
 git clone https://github.com/cintyagomes/omdbapi.git
 ```
@@ -63,22 +72,32 @@ git clone https://github.com/cintyagomes/omdbapi.git
 
 ---
 
+## 🎬 **Mídia**
+
+https://github.com/user-attachments/assets/1967e54a-2c02-42a4-bf46-a0e9d244f585
+
+---
+
 ## 🧑‍💻 **Contribuição**
+
 Contribuições são bem-vindas! Siga os passos abaixo para contribuir:
 
 1. Faça um fork do repositório.
-   
+
 2. Crie uma branch para sua feature:
+
 ```bash
 git checkout -b feature/nome-da-feature
 ```
 
 3. Faça commit das suas alterações:
+
 ```bash
 git commit -m "feat: Adds new feature"
 ```
 
 4. Envie suas alterações:
+
 ```bash
 git push origin added/nome-da-feature
 ```

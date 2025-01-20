@@ -49,6 +49,38 @@ class MovieCatalogFragment : Fragment() {
         )[MovieViewModel::class.java]
 
         // Sets up the toolbar
+        setUpToolbar()
+
+        // Sets up the RecyclerView with a LinearLayoutManager and the movie adapter
+        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        binding.recyclerView.adapter = adapter
+
+        // Observes the movie state and updates the UI accordingly
+        viewModel.movies.observe(viewLifecycleOwner) { state ->
+            when (state) {
+                is MovieViewModel.UIState.Loading -> Unit // To be implemented
+                is MovieViewModel.UIState.Error -> {
+                    Toast.makeText(context, state.message, Toast.LENGTH_LONG).show() // Shows error message
+                }
+                is MovieViewModel.UIState.Loaded -> {
+                    adapter.submitList(state.data) // Shows the movie list
+                }
+            }
+        }
+
+        // Sets the item click listener for navigating to movie detail page
+        adapter.setOnItemClickListener { movieId ->
+            navigateToMovieDetail(movieId)
+        }
+
+        // Retrieves the query parameter from the arguments and fetches the movies
+        val query = arguments?.let { MovieCatalogFragmentArgs.fromBundle(it).query }
+        query?.let {
+            viewModel.fetchMovies("431d51d7", it) // Fetches movies based on the query
+        }
+    }
+
+    private fun setUpToolbar() {
         binding.toolbar.apply {
             (activity as? AppCompatActivity)?.setSupportActionBar(this) // Sets the action bar
             (activity as? AppCompatActivity)?.supportActionBar?.setDisplayShowTitleEnabled(false) // Hides the title
@@ -60,32 +92,11 @@ class MovieCatalogFragment : Fragment() {
                 navController?.navigateUp() // Navigates back
             }
         }
+    }
 
-        // Sets up the RecyclerView with a LinearLayoutManager and the movie adapter
-        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        binding.recyclerView.adapter = adapter
-
-        // Observes changes to the movies list and updates the adapter
-        viewModel.movies.observe(viewLifecycleOwner) { movies ->
-            adapter.submitList(movies) // Updates the RecyclerView with the new list of movies
-        }
-
-        // Sets the item click listener for navigating to movie detail page
-        adapter.setOnItemClickListener { movieId ->
-            val action = MovieCatalogFragmentDirections
-                .actionMovieCatalogFragmentToMovieDetailFragment(movieId) // Creates navigation action
-            findNavController().navigate(action) // Navigates to the movie detail fragment
-        }
-
-        // Retrieves the query parameter from the arguments and fetches the movies
-        val query = arguments?.let { MovieCatalogFragmentArgs.fromBundle(it).query }
-        query?.let {
-            viewModel.getMovies("431d51d7", it) // Fetches movies based on the query
-        }
-
-        // Observes error messages and displays them as Toast notifications
-        viewModel.error.observe(viewLifecycleOwner) { errorMessage ->
-            Toast.makeText(context, errorMessage, Toast.LENGTH_LONG).show() // Shows error message as a Toast
-        }
+    private fun navigateToMovieDetail(movieId: String) {
+        val action = MovieCatalogFragmentDirections
+            .actionMovieCatalogFragmentToMovieDetailFragment(movieId) // Creates navigation action
+        findNavController().navigate(action) // Navigates to the movie detail fragment
     }
 }
