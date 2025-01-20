@@ -74,7 +74,7 @@ git clone https://github.com/cintyagomes/omdbapi.git
 
 ## 🎬 **Mídia**
 
-https://github.com/user-attachments/assets/1967e54a-2c02-42a4-bf46-a0e9d244f585
+https://github.com/user-attachments/assets/83020715-de38-4f55-966f-b727324e6dd1
 
 ---
 
