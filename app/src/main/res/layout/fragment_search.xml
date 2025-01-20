@@ -9,8 +9,8 @@
 
     <ImageView
         android:id="@+id/search_image"
-        android:layout_width="300dp"
-        android:layout_height="200dp"
+        android:layout_width="@dimen/search_image_width"
+        android:layout_height="@dimen/search_image_height"
         android:layout_centerHorizontal="true"
         android:contentDescription="@string/movie_image"
         android:scaleType="centerCrop"
@@ -33,11 +33,12 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/search_title"
         android:layout_marginTop="@dimen/margin_extra_large"
+        android:layout_marginHorizontal="@dimen/padding_medium"
         android:autofillHints="search"
         android:inputType="text"
         android:textColorHint="@color/gray"
         android:hint="@string/search_for_a_movie"
-        android:minHeight="48dp"
+        android:minHeight="@dimen/edit_text_height"
         android:textSize="@dimen/text_size_large" />
 
     <Button
@@ -46,6 +47,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/search_edit_text"
         android:layout_marginTop="@dimen/margin_medium"
+        android:layout_marginHorizontal="@dimen/padding_medium"
         android:textColorHint="@color/white"
         android:backgroundTint="@color/gray"
         android:text="@string/search_button" />

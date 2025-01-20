@@ -19,4 +19,21 @@
 
     <!-- Weight -->
     <dimen name="weight_small">1</dimen>
+
+    <!-- Elevation -->
+    <dimen name="elevation_small">4dp</dimen>
+
+    <!-- Corner Radius -->
+    <dimen name="corner_radius_small">8dp</dimen>
+
+    <!-- Image Sizes -->
+    <dimen name="search_image_width">300dp</dimen>
+    <dimen name="search_image_height">200dp</dimen>
+    <dimen name="poster_width">140dp</dimen>
+    <dimen name="poster_height">200dp</dimen>
+    <dimen name="movie_detail_poster_width">180dp</dimen>
+    <dimen name="movie_detail_poster_height">256dp</dimen>
+
+    <!-- Components Sizes -->
+    <dimen name="edit_text_height">48dp</dimen>
 </resources>

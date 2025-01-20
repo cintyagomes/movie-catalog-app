@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
-        android:elevation="4dp"
+        android:elevation="@dimen/elevation_small"
         android:theme="?attr/actionBarTheme"
         android:title="@string/go_back_button"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,8 +22,8 @@
 
     <ImageView
         android:id="@+id/poster"
-        android:layout_width="140dp"
-        android:layout_height="200dp"
+        android:layout_width="@dimen/movie_detail_poster_width"
+        android:layout_height="@dimen/movie_detail_poster_height"
         android:contentDescription="@string/movie_poster"
         android:scaleType="centerCrop"
         android:layout_marginTop="@dimen/margin_medium"
@@ -33,18 +33,19 @@
 
     <TextView
         android:id="@+id/language"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_medium"
+        android:paddingHorizontal="@dimen/padding_medium"
         android:text="@string/movie_language"
         android:textSize="@dimen/text_size_medium"
-        android:paddingHorizontal="@dimen/padding_medium"
-        android:layout_marginTop="@dimen/margin_medium"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/poster"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <TextView
         android:id="@+id/runtime"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/movie_runtime"
         android:textSize="@dimen/text_size_medium"
@@ -57,18 +58,19 @@
 
     <TextView
         android:id="@+id/release_date"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_medium"
+        android:paddingHorizontal="@dimen/padding_medium"
         android:text="@string/movie_release_date"
         android:textSize="@dimen/text_size_medium"
-        android:paddingHorizontal="@dimen/padding_medium"
-        android:layout_marginTop="@dimen/margin_medium"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/poster"
         app:layout_constraintTop_toBottomOf="@+id/runtime" />
 
     <TextView
         android:id="@+id/type"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/type"
         android:textSize="@dimen/text_size_medium"
@@ -81,7 +83,7 @@
 
     <TextView
         android:id="@+id/imdbRating"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/movie_rating"
         android:textSize="@dimen/text_size_medium"
@@ -94,7 +96,7 @@
 
     <TextView
         android:id="@+id/title"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/movie_title"
         android:textSize="@dimen/text_size_extra_large"
@@ -108,7 +110,7 @@
 
     <TextView
         android:id="@+id/plot"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/movie_plot"
         android:textSize="@dimen/text_size_medium"
@@ -121,7 +123,7 @@
 
     <TextView
         android:id="@+id/genre"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/movie_genre"
         android:textSize="@dimen/text_size_medium"
@@ -134,7 +136,7 @@
 
     <TextView
         android:id="@+id/actors"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/movie_actors"
         android:textSize="@dimen/text_size_medium"
@@ -147,7 +149,7 @@
 
     <TextView
         android:id="@+id/director"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/movie_director"
         android:textSize="@dimen/text_size_medium"
@@ -160,7 +162,7 @@
 
     <TextView
         android:id="@+id/writer"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/movie_writer"
         android:textSize="@dimen/text_size_medium"
@@ -173,7 +175,7 @@
 
     <TextView
         android:id="@+id/awards"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/movie_awards"
         android:textSize="@dimen/text_size_medium"

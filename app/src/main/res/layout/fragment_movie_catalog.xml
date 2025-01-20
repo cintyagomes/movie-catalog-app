@@ -14,7 +14,7 @@
         app:titleTextColor="@color/white"
         android:theme="?attr/actionBarTheme"
         android:title="@string/go_back_button"
-        android:elevation="4dp" />
+        android:elevation="@dimen/elevation_small" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
