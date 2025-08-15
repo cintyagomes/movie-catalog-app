@@ -61,7 +61,7 @@ concerns and facilitate testability.
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/cintyagomes/omdbapi.git
+git clone https://github.com/cintyagomes/movie-catalog-app.git
 ```
 
 2. Open the project in Android Studio.
