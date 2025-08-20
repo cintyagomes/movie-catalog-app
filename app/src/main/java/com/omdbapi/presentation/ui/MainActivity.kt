@@ -1,4 +1,4 @@
-package com.omdbapi
+package com.omdbapi.presentation.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

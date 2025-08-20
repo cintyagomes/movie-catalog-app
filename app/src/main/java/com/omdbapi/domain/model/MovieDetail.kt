@@ -1,4 +1,4 @@
-package com.omdbapi.data.model
+package com.omdbapi.domain.model
 
 import com.google.gson.annotations.SerializedName
 

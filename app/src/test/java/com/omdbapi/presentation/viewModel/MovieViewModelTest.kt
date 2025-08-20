@@ -2,10 +2,10 @@ package com.omdbapi.presentation.viewModel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
-import com.omdbapi.data.MovieRepository
-import com.omdbapi.data.model.Movie
-import com.omdbapi.data.model.MovieDetail
-import com.omdbapi.data.model.MovieResponse
+import com.omdbapi.data.repository.MovieRepository
+import com.omdbapi.domain.model.Movie
+import com.omdbapi.domain.model.MovieDetail
+import com.omdbapi.domain.model.MovieResponse
 import io.mockk.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi

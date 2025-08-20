@@ -10,9 +10,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
-import com.omdbapi.MainActivity
+import com.omdbapi.presentation.ui.MainActivity
 import com.omdbapi.R
-import com.omdbapi.data.model.MovieDetail
+import com.omdbapi.domain.model.MovieDetail
 import com.omdbapi.databinding.FragmentMovieDetailBinding
 import com.omdbapi.presentation.viewModel.MovieViewModel
 import dagger.hilt.android.AndroidEntryPoint

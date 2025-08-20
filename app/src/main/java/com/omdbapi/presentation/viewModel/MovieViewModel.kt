@@ -4,9 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.omdbapi.data.MovieRepository
-import com.omdbapi.data.model.Movie
-import com.omdbapi.data.model.MovieDetail
+import com.omdbapi.data.repository.MovieRepository
+import com.omdbapi.domain.model.Movie
+import com.omdbapi.domain.model.MovieDetail
 import dagger.hilt.android.lifecycle.HiltViewModel
 import jakarta.inject.Inject
 import kotlinx.coroutines.launch

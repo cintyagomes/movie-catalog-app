@@ -11,7 +11,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.omdbapi.MainActivity
+import com.omdbapi.presentation.ui.MainActivity
 import com.omdbapi.R
 import com.omdbapi.databinding.FragmentMovieCatalogBinding
 import com.omdbapi.presentation.viewModel.MovieViewModel
