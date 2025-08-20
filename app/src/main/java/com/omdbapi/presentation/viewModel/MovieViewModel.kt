@@ -7,10 +7,13 @@ import androidx.lifecycle.viewModelScope
 import com.omdbapi.data.MovieRepository
 import com.omdbapi.data.model.Movie
 import com.omdbapi.data.model.MovieDetail
+import dagger.hilt.android.lifecycle.HiltViewModel
+import jakarta.inject.Inject
 import kotlinx.coroutines.launch
 
 // ViewModel for managing movie data and handling UI-related logic
-internal class MovieViewModel(
+@HiltViewModel
+internal class MovieViewModel @Inject constructor(
     private val repository: MovieRepository // Injected repository for fetching movie data
 ) : ViewModel() {
 

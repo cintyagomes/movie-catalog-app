@@ -3,8 +3,10 @@ package com.omdbapi
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.omdbapi.databinding.ActivityMainBinding
+import dagger.hilt.android.AndroidEntryPoint
 
 // MainActivity for initializing the main screen with the navigation graph
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     // Nullable binding instance to hold the view binding object

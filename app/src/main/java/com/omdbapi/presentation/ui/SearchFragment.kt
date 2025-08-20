@@ -8,8 +8,10 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.omdbapi.databinding.FragmentSearchBinding
+import dagger.hilt.android.AndroidEntryPoint
 
 // Fragment for handling the search functionality and navigating to movie catalog
+@AndroidEntryPoint
 class SearchFragment : Fragment() {
 
     private lateinit var binding: FragmentSearchBinding // Binding for fragment layout
