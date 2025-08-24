@@ -25,7 +25,7 @@ concerns and facilitate testability.
 - **ViewModel:** Responsible for managing UI data and business logic.
 - **Repository:** Interacts with the API and manages data.
 - **Retrofit:** Handles network requests.
-- **Dagger:** Manages dependency injection.
+- **Dagger/ Hilt:** Manages dependency injection.
 
 ---
 
@@ -33,7 +33,7 @@ concerns and facilitate testability.
 
 - **Kotlin:** Development language.
 - **Retrofit:** For communication with RESTful APIs.
-- **Dagger:** For dependency injection.
+- **Dagger/ Hilt:** For dependency injection.
 - **Coroutines:** For asynchronous calls and data flow handling.
 - **XML:** For layout creation.
 - **Jetpack Components:**

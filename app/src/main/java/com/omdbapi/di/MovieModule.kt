@@ -1,16 +1,19 @@
 package com.omdbapi.di
 
 import com.omdbapi.data.api.GetMoviesService
-import com.omdbapi.data.MovieRepository
+import com.omdbapi.data.repository.MovieRepository
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
 // Dagger module for providing movie-related dependencies
 @Module
-internal class MovieModule {
+@InstallIn(SingletonComponent::class)
+internal object MovieModule {
     // Provides a singleton instance of Retrofit configured for the OMDB API
     @Provides
     @Singleton

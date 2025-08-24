@@ -7,22 +7,22 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
-import com.omdbapi.MainActivity
+import com.omdbapi.presentation.ui.MainActivity
 import com.omdbapi.R
-import com.omdbapi.data.model.MovieDetail
+import com.omdbapi.domain.model.MovieDetail
 import com.omdbapi.databinding.FragmentMovieDetailBinding
-import com.omdbapi.di.DaggerAppComponent
 import com.omdbapi.presentation.viewModel.MovieViewModel
-import com.omdbapi.presentation.viewModel.MovieViewModelFactory
+import dagger.hilt.android.AndroidEntryPoint
 
 // Fragment for displaying detailed information about a movie
+@AndroidEntryPoint
 class MovieDetailFragment : Fragment(R.layout.fragment_movie_detail) {
 
     private lateinit var binding: FragmentMovieDetailBinding // Binding for fragment layout
-    private lateinit var viewModel: MovieViewModel // ViewModel for managing UI-related data
+    private val viewModel: MovieViewModel by viewModels() // ViewModel for managing UI-related data
 
     // Inflates the fragment's layout and initializes the ViewModel
     override fun onCreateView(
@@ -30,17 +30,6 @@ class MovieDetailFragment : Fragment(R.layout.fragment_movie_detail) {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentMovieDetailBinding.inflate(inflater, container, false) // Binds the layout
-
-        // Creates the AppComponent for Dagger dependency injection and gets the repository
-        val appComponent = DaggerAppComponent.create()
-        val repository = appComponent.movieRepository()
-
-        // Creates and sets the ViewModel using the repository
-        viewModel = ViewModelProvider(
-            this,
-            MovieViewModelFactory(repository)
-        )[MovieViewModel::class.java]
-
         return binding.root // Returns the root view of the fragment
     }
 

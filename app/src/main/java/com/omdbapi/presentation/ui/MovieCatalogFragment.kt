@@ -7,23 +7,23 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.omdbapi.MainActivity
+import com.omdbapi.presentation.ui.MainActivity
 import com.omdbapi.R
 import com.omdbapi.databinding.FragmentMovieCatalogBinding
-import com.omdbapi.di.DaggerAppComponent
 import com.omdbapi.presentation.viewModel.MovieViewModel
-import com.omdbapi.presentation.viewModel.MovieViewModelFactory
+import dagger.hilt.android.AndroidEntryPoint
 
 // Fragment for displaying a catalog of movies
+@AndroidEntryPoint
 class MovieCatalogFragment : Fragment() {
 
-    private lateinit var viewModel: MovieViewModel // ViewModel for managing UI-related data
     private lateinit var binding: FragmentMovieCatalogBinding // Binding for fragment layout
     private val adapter = MovieAdapter() // Adapter for displaying movie items in RecyclerView
+    private val viewModel: MovieViewModel by viewModels() // ViewModel for managing UI-related data
 
     // Inflates the fragment's layout
     override fun onCreateView(
@@ -37,16 +37,6 @@ class MovieCatalogFragment : Fragment() {
     // Initializes the ViewModel, UI elements, and observers
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        // Creates the AppComponent for Dagger dependency injection and gets the repository
-        val appComponent = DaggerAppComponent.create()
-        val repository = appComponent.movieRepository()
-
-        // Creates and sets the ViewModel using the repository
-        viewModel = ViewModelProvider(
-            this,
-            MovieViewModelFactory(repository)
-        )[MovieViewModel::class.java]
 
         // Sets up the toolbar
         setUpToolbar()
